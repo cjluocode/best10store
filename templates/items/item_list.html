@@ -1,1 +1,117 @@
-<h1>Item List Page</h1>
+{% extends 'base.html' %}
+
+
+{%block content%}
+
+<style>
+ .jumbotron{
+    background-color: #FCEFE7;
+    }
+</style>
+
+
+<!-- Junbotron Area-->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <!--<h1 class="display-4"><b>Best10</b></h1>-->
+      <br>
+    <p class="display-4 font-weight-light">Find top 10 items on whatever you want</p>
+      <br>
+    <br>
+      <form method="POST"> {% csrf_token %}
+      <div class="input-group">
+     <input type="text" class="form-control" name="query_word" placeholder="Enter here...">
+     <span class="input-group-btn">
+    <button class="btn btn-default" type="submit">LOOK UP</button>
+  </span>
+      </div>
+</form>
+  </div>
+</div>
+<!-- How it works Session-->
+{% if not item_list %}
+<br>
+<div class="container">
+
+  <!-- First Row-->
+  <div class="row">
+    <div class="col-6 offset-1">
+      <div class="card border-0">
+    <div class="card-body">
+      <br><br><br>
+    <span class="h3 font-weight-bold">Easier & faster shopping experience
+    </span><br><br>
+    <p class="lead text-justify">
+      We gather all items' information from the Internet and return the best 10 results based on customer satisfaction, reviews, ratings, and popularity
+    </p>
+    </div>
+</div>
+    </div>
+    <div class="col-4">
+      <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/shopping_img.jpg" height="300" width="300" class="rounded-circle">
+    </div>
+  </div>
+  <br><br>
+  <hr>
+  <br><br>
+  <!-- Second Row-->
+   <div class="row">
+     <div class="col-4 offset-2">
+      <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/old_way.jpg" height="300" width="300" class="rounded-circle">
+    </div>
+    <div class="col-6">
+      <div class="card border-0">
+    <div class="card-body">
+    <span class="h3 font-weight-bold">We do the research for you</span><br><br>
+    <p class="lead text-justify">
+    We know how much time you spend to look for a best item. Let us do all the tedious and time-consuming work for you.
+    It's time to say goodbye to the old shopping ways
+    </p>
+    </div>
+</div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+<!-- Search List Session-->
+<div class="container">
+
+    <div class="row">
+        <div class="col-8 offset-2">
+
+{% for item in item_list %}
+<div class="card">
+  <div class="card-header">
+    <span class="{% if forloop.counter < 4%}badge badge-pill badge-warning{%endif%}" >Top {{ forloop.counter}}</span> <span class="float-right">Customer satisfaction {{ item.hotscore }}%</span>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" height="140">&ensp;<span class="">{{ item.title|truncatechars:55 }}</span></a></p>
+      <footer class="footer font-weight-light"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30">Rating:{{ item.rating }}|Count:{{item.rating_count}}</footer>
+    </blockquote>
+  </div>
+</div>
+<br>
+{% endfor %}
+</div>
+</div>
+    </div>
+
+{% endblock %}
