@@ -35,33 +35,38 @@ class Item(object):
                 print("looks great")
 
                 soup = BeautifulSoup(r.content, "html.parser")
+                try:
 
-                ul = soup.find('div', {'id': "resultsCol"})
-                all_li = ul.find_all('li', class_='s-result-item')
+                    ul = soup.find('div', {'id': "resultsCol"})
+                    all_li = ul.find_all('li', class_='s-result-item')
 
-                for li in all_li:
-                    all_a = li.find_all('a')
-                    rating_div = li.find('div', class_='a-column a-span5 a-span-last')
+                    for li in all_li:
+                        all_a = li.find_all('a')
+                        rating_div = li.find('div', class_='a-column a-span5 a-span-last')
+                        if not rating_div:
+                            rating_div = li.find('div', class_='a-row a-spacing-top-mini a-spacing-none')
 
-                    try:
-                        rating_count = int(rating_div.find_all('a')[1].text)
-                        rating = float(rating_div.find('i').text.split(" ")[0])
-                        title = all_a[1].text.strip()
-                        link = all_a[1]['href']
-                        img = all_a[0].find('img')['src']
+                        try:
+                            rating_count = int(rating_div.find_all('a')[1].text)
+                            rating = float(rating_div.find('i').text.split(" ")[0])
+                            title = all_a[1].text.strip()
+                            link = all_a[1]['href']
+                            img = all_a[0].find('img')['src']
 
-                        if title and 'https' in link and not "Learn more about Sponsored Products." in title and len(
-                                title) > 5:
-                            new_item = Item()
-                            new_item.title = title
-                            new_item.link = link
-                            new_item.rating = rating
-                            new_item.rating_count = rating_count
-                            new_item.hotscore = int(calculate_customer_satisfaction_score(rating,rating_count))
-                            new_item.image = img
-                            item_list.append(new_item)
-                    except:
-                        pass
+                            if title and 'https' in link and not "Learn more about Sponsored Products." in title and len(
+                                    title) > 5:
+                                new_item = Item()
+                                new_item.title = title
+                                new_item.link = link
+                                new_item.rating = rating
+                                new_item.rating_count = rating_count
+                                new_item.hotscore = int(calculate_customer_satisfaction_score(rating,rating_count))
+                                new_item.image = img
+                                item_list.append(new_item)
+                        except:
+                            pass
+                except:
+                    pass
 
                 print("--- %s seconds ---" % (time.time() - start_time))
             else:
