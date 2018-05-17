@@ -13,6 +13,7 @@ class Item(object):
         self.rating_count = 10
         self.hotscore = 90
         self.image    = ""
+        self.price    = 1
 
     def get_items(self,q_word=None):
 
@@ -47,6 +48,7 @@ class Item(object):
                             rating_div = li.find('div', class_='a-row a-spacing-top-mini a-spacing-none')
 
                         try:
+                            price = li.find_all('span', class_='sx-price-whole')[0].text
                             rating_count = int(rating_div.find_all('a')[1].text)
                             rating = float(rating_div.find('i').text.split(" ")[0])
                             title = all_a[1].text.strip()
@@ -62,6 +64,7 @@ class Item(object):
                                 new_item.rating_count = rating_count
                                 new_item.hotscore = int(calculate_customer_satisfaction_score(rating,rating_count))
                                 new_item.image = img
+                                new_item.price = price
                                 item_list.append(new_item)
                         except:
                             pass
