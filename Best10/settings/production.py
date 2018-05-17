@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'ge(vu2xd9dk-yvcs8tx#d6z_v5ynm%y9pgztejq@%5@+if5)ya'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['best-10.herokuapp.com','www.best10.store']
 
