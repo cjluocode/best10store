@@ -32,7 +32,7 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             r = requests.get(url, headers=headers, timeout=5)
-
+            print('getting to items')
             # sleep(5)while True:
             if int(r.status_code) == 200:
                 print("looks great")
