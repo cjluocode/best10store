@@ -15,6 +15,8 @@ class Item(object):
         self.image    = ""
         self.price    = 1
 
+
+    # Primary Search
     def get_items(self,q_word=None):
 
         item_list = []
@@ -78,3 +80,80 @@ class Item(object):
         return sorted(item_list, key=lambda x: x.rating_count, reverse=True)
 
 
+
+
+    # Back Search
+    def get_square_items(self,q_word=None):
+
+        print("sqaure items ")
+        item_list = []
+
+        start_time = time.time()
+        headers = {
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+
+        for page in range(1, 3):
+
+            pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
+            keyword_url = '&field-keywords=%s' % q_word
+            url = pre_url + keyword_url + '&page={0}'.format(page)
+
+            r = requests.get(url, headers=headers, timeout=5)
+
+            if int(r.status_code) == 200:
+                print("looks great")
+
+                soup = BeautifulSoup(r.content, "html.parser")
+
+                # a_tags = soup.find_all('a', class_='a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal')
+
+                ul = soup.find('div', {'id': "resultsCol"})
+
+                all_li = ul.find_all('li', class_='s-result-item')
+                title = ''
+                link  = ""
+                image = ""
+                for li in all_li:
+                    # Get Title and Link
+                    all_tags = li.find_all('a', class_='a-link-normal')
+                    all_imgs = li.find_all('img', class_='s-access-image cfMarker')
+                    all_prices = li.find_all('span', class_='sx-price-whole')
+
+
+                    try:
+                        for price in all_prices:
+                            price = int(price.text)
+
+                        for img in all_imgs:
+                            if 'src' in img.attrs:
+                                image = img['src']
+                        for a in all_tags:
+                            if 'title' in a.attrs and 'href' in a.attrs:
+                                title = a['title']
+                                link = a['href']
+
+
+
+                        rating_count = int(li.find('a', class_='a-size-small a-link-normal a-text-normal').text)
+                        rating = float(li.find('span', class_='a-icon-alt').text.split(" ")[0])
+                        # print(rating)
+                        if not link.startswith("https://"):
+                            link = 'https://www.amazon.com' + link
+                        new_item = Item()
+                        new_item.title = title
+                        new_item.link  = link
+                        new_item.image = image
+                        new_item.price = price
+                        new_item.rating = rating
+                        new_item.rating_count = rating_count
+                        new_item.hotscore = int(calculate_customer_satisfaction_score(rating, rating_count))
+
+                        item_list.append(new_item)
+
+
+                    except:
+                        pass
+
+
+
+            return  sorted(item_list, key=lambda x: x.rating_count, reverse=True)
