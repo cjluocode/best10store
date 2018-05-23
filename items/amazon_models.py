@@ -34,6 +34,7 @@ class Item(object):
             r = requests.get(url, headers=headers, timeout=5)
             print('getting to items')
             # sleep(5)while True:
+            print(r.status_code)
             if int(r.status_code) == 200:
                 print("looks great")
 
