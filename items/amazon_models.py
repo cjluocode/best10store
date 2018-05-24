@@ -2,6 +2,8 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from .algorithms import *
+from .user_agent import user_agent_list
+import random
 # Create Amazon item model
 
 
@@ -23,7 +25,7 @@ class Item(object):
 
         start_time = time.time()
         headers = {
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+            'User-Agent': random.choice(user_agent_list)}
 
         for page in range(1, 3):
 
@@ -97,7 +99,7 @@ class Item(object):
 
         start_time = time.time()
         headers = {
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+            'user-agent': random.choice(user_agent_list)}
 
         for page in range(1, 3):
 

@@ -18,7 +18,6 @@ def item_list(request):
                 print("where is backup baby")
                 search_result = item.get_square_items(q_word)
 
-
             context = {
              "item_list": search_result
             }
