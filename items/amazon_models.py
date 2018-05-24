@@ -25,7 +25,9 @@ class Item(object):
 
         start_time = time.time()
         headers = {
-            'User-Agent': random.choice(user_agent_list)}
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+
+
 
         for page in range(1, 3):
 
