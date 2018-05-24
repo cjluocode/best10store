@@ -20,7 +20,7 @@ def item_list(request):
 
 
             context = {
-             "item_list": search_result[:10]
+             "item_list": search_result
             }
             return render(request,'items/item_list.html', context)
         else:

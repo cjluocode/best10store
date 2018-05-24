@@ -78,7 +78,13 @@ class Item(object):
             else:
                 pass
 
-        return sorted(item_list, key=lambda x: x.rating_count, reverse=True)
+        # sort item list by rating_count
+        rating_count_sort = sorted(item_list, key=lambda x: x.rating_count, reverse=True)
+
+        # sort top 10 rating_count_sort by rating
+        rating_sort       = sorted(rating_count_sort[:10], key=lambda x: x.rating, reverse=True)
+
+        return rating_sort
 
 
 
@@ -155,6 +161,11 @@ class Item(object):
                     except:
                         pass
 
+            # sort item list by rating_count
+            rating_count_sort = sorted(item_list, key=lambda x: x.rating_count, reverse=True)
+
+            # sort top 10 rating_count_sort by rating
+            rating_sort = sorted(rating_count_sort[:10], key=lambda x: x.rating, reverse=True)
 
 
-            return  sorted(item_list, key=lambda x: x.rating_count, reverse=True)
+            return  rating_sort
