@@ -25,7 +25,8 @@ class Item(object):
 
         start_time = time.time()
         headers = {
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+            'user-agent': random.choice(user_agent_list)
+        }
 
 
 
@@ -101,7 +102,8 @@ class Item(object):
 
         start_time = time.time()
         headers = {
-            'user-agent': random.choice(user_agent_list)}
+            'user-agent': random.choice(user_agent_list)
+        }
 
         for page in range(1, 3):
 
@@ -129,7 +131,6 @@ class Item(object):
                     all_tags = li.find_all('a', class_='a-link-normal')
                     all_imgs = li.find_all('img', class_='s-access-image cfMarker')
                     all_prices = li.find_all('span', class_='sx-price-whole')
-
 
                     try:
                         for price in all_prices:
