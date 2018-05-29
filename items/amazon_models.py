@@ -41,13 +41,13 @@ class Item(object):
             print('getting to items')
             # sleep(5)while True:
             print(r.status_code)
-            if int(r.status_code) == 200:
-                send_mail(
-                    'Got blocked ',
-                    'Here is the message.',
-                    'cj160901@gmail.com',
-                    ['cj160901@gmail.com']
-                )
+            # if int(r.status_code) == 200:
+            #     send_mail(
+            #         'Got blocked ',
+            #         'Here is the message.',
+            #         'cj160901@gmail.com',
+            #         ['cj160901@gmail.com']
+            #     )
             if int(r.status_code) == 200:
                 print("looks great")
 
@@ -121,13 +121,13 @@ class Item(object):
 
             r = requests.get(url, headers=headers, timeout=5)
 
-            if int(r.status_code) != 200:
-                send_mail(
-                    'Got blocked ',
-                    'Here is the message.',
-                    'cj160901@gmail.com',
-                    ['cj160901@gmail.com']
-                )
+            # if int(r.status_code) != 200:
+            #     send_mail(
+            #         'Got blocked ',
+            #         'Here is the message.',
+            #         'cj160901@gmail.com',
+            #         ['cj160901@gmail.com']
+            #     )
 
             if int(r.status_code) == 200:
                 print("looks great")
