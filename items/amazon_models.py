@@ -41,7 +41,7 @@ class Item(object):
             print('getting to items')
             # sleep(5)while True:
             print(r.status_code)
-            if int(r.status_code) != 200:
+            if int(r.status_code) == 200:
                 send_mail(
                     'Got blocked ',
                     'Here is the message.',
