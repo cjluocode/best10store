@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'gd9dk-yvcsdhkjhalkas8tx#d6z_v5ynm%y9pgzakjsdkhaljjjq@%5@+if5)ya'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['best-10.herokuapp.com','www.best10.store']
 
@@ -128,4 +128,4 @@ EMAIL_HOST_USER = 'cj160901@gmail.com'
 EMAIL_HOST_PASSWORD = 'luo110015'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Your Name <cj160901@gmail.com>'
+DEFAULT_FROM_EMAIL = '<cj160901@gmail.com>'
