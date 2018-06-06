@@ -137,6 +137,7 @@ class Item(object):
 
 
         for page in range(1, 3):
+
             # set header
             user_agent = random.choice(user_agent_list)
             print(user_agent)
@@ -159,13 +160,12 @@ class Item(object):
                                  proxies={"http":proxy, "https":proxy},
                                  timeout=5)
 
+                print("Status_code: " + str(r.status_code))
 
                 if int(r.status_code) == 200:
                     print("looks great")
 
                     soup = BeautifulSoup(r.content, "html.parser")
-
-                    # a_tags = soup.find_all('a', class_='a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal')
 
                     ul = soup.find('div', {'id': "resultsCol"})
 
