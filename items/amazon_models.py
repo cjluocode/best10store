@@ -113,6 +113,7 @@ class Item(object):
                         'cj160901@gmail.com',
                         ['cj160901@gmail.com'],
                     )
+                    print("Primary Parsing filed")
             except:
                 pass
         # sort item list by rating_count
@@ -133,71 +134,94 @@ class Item(object):
         item_list = []
 
         start_time = time.time()
-        headers = {
-            'user-agent': random.choice(user_agent_list)
-        }
+
 
         for page in range(1, 3):
+            # set header
+            user_agent = random.choice(user_agent_list)
+            print(user_agent)
+            headers = {
+                'user-agent': user_agent
+            }
 
+            #Set proxy
+            proxy = next(proxy_pool)
+            print(proxy)
+
+            #Set Url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
-            r = requests.get(url, headers=headers, timeout=5)
+            try:
+                r = requests.get(url,
+                                 headers=headers,
+                                 proxies={"http":proxy, "https":proxy},
+                                 timeout=5)
 
 
-            if int(r.status_code) == 200:
-                print("looks great")
+                if int(r.status_code) == 200:
+                    print("looks great")
 
-                soup = BeautifulSoup(r.content, "html.parser")
+                    soup = BeautifulSoup(r.content, "html.parser")
 
-                # a_tags = soup.find_all('a', class_='a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal')
+                    # a_tags = soup.find_all('a', class_='a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal')
 
-                ul = soup.find('div', {'id': "resultsCol"})
+                    ul = soup.find('div', {'id': "resultsCol"})
 
-                all_li = ul.find_all('li', class_='s-result-item')
-                title = ''
-                link  = ""
-                image = ""
-                for li in all_li:
-                    # Get Title and Link
-                    all_tags = li.find_all('a', class_='a-link-normal')
-                    all_imgs = li.find_all('img', class_='s-access-image cfMarker')
-                    all_prices = li.find_all('span', class_='sx-price-whole')
+                    all_li = ul.find_all('li', class_='s-result-item')
+                    title = ''
+                    link  = ""
+                    image = ""
+                    for li in all_li:
+                        # Get Title and Link
+                        all_tags = li.find_all('a', class_='a-link-normal')
+                        all_imgs = li.find_all('img', class_='s-access-image cfMarker')
+                        all_prices = li.find_all('span', class_='sx-price-whole')
 
-                    try:
-                        for price in all_prices:
-                            price = int(price.text)
+                        try:
+                            for price in all_prices:
+                                price = int(price.text)
 
-                        for img in all_imgs:
-                            if 'src' in img.attrs:
-                                image = img['src']
-                        for a in all_tags:
-                            if 'title' in a.attrs and 'href' in a.attrs:
-                                title = a['title']
-                                link = a['href']
-
-
-
-                        rating_count = int(li.find('a', class_='a-size-small a-link-normal a-text-normal').text)
-                        rating = float(li.find('span', class_='a-icon-alt').text.split(" ")[0])
-                        # print(rating)
-                        if not link.startswith("https://"):
-                            link = 'https://www.amazon.com' + link
-                        new_item = Item()
-                        new_item.title = title
-                        new_item.link  = link
-                        new_item.image = image
-                        new_item.price = price
-                        new_item.rating = rating
-                        new_item.rating_count = rating_count
-                        new_item.hotscore = int(calculate_customer_satisfaction_score(rating, rating_count))
-
-                        item_list.append(new_item)
+                            for img in all_imgs:
+                                if 'src' in img.attrs:
+                                    image = img['src']
+                            for a in all_tags:
+                                if 'title' in a.attrs and 'href' in a.attrs:
+                                    title = a['title']
+                                    link = a['href']
 
 
-                    except:
-                        pass
+
+                            rating_count = int(li.find('a', class_='a-size-small a-link-normal a-text-normal').text)
+                            rating = float(li.find('span', class_='a-icon-alt').text.split(" ")[0])
+                            # print(rating)
+                            if not link.startswith("https://"):
+                                link = 'https://www.amazon.com' + link
+                            new_item = Item()
+                            new_item.title = title
+                            new_item.link  = link
+                            new_item.image = image
+                            new_item.price = price
+                            new_item.rating = rating
+                            new_item.rating_count = rating_count
+                            new_item.hotscore = int(calculate_customer_satisfaction_score(rating, rating_count))
+
+                            item_list.append(new_item)
+
+
+                        except:
+                            pass
+                else:
+                    send_mail(
+                        'Parsing failed',
+                        'Here is the status code:' + r.status_code,
+                        'cj160901@gmail.com',
+                        ['cj160901@gmail.com'],
+                    )
+                    print("Backup-Parsing failed")
+            except:
+                pass
 
             # sort item list by rating_count
             rating_count_sort = sorted(item_list, key=lambda x: x.rating_count, reverse=True)
