@@ -87,7 +87,6 @@ class Item(object):
                                 rating = float(rating_div.find('i').text.split(" ")[0])
                                 title = all_a[1].text.strip()
                                 link = all_a[1]['href'] + "&tag=best10stoream-20"
-                                print(link)
                                 img = all_a[0].find('img')['src']
 
                                 if title and 'https' in link and not "Learn more about Sponsored Products." in title and len(

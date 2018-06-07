@@ -13,7 +13,7 @@
   <div class="container text-center">
             <p class="display-4 font-weight-bold">Best10</p>
 
-    <p class="h4 font-weight-light">Find  top 10 items on everything</p>
+    <p class="h4 font-weight-light">Find top 10 items you want</p>
       <br>
     <br>
       <form method="POST"> {% csrf_token %}
@@ -30,6 +30,49 @@
 {% if not item_list %}
 <br>
 <div class="container">
+
+     <!-- feature product-->
+    <h4>Featured product</h4>
+    <br>
+    <div class="row">
+          <div class="col-4">
+             <div class="card border-0 text-center">
+               <div class="card-body">
+                   <p class="lead">The Lean Startup</p>
+                   <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/517wplLjOXL._SX329_BO1%2C204%2C203%2C200_.jpg" alt="" height="200">
+                   <p></p>
+                   <a target="_blank" class="btn btn-outline-primary" href="https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898/ref=sr_1_4?s=books&ie=UTF8&qid=1528385623&sr=1-4&keywords=lean+startup&tag=best10stoream-20">View on Amazon</a>
+               </div>
+              </div>
+          </div>
+
+         <div class="col-4">
+             <div class="card border-0 text-center">
+               <div class="card-body">
+                   <p class="lead">$100 Startup</p>
+                   <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/100.jpg" alt="" height="200">
+                   <p></p>
+                   <a target="_blank" class="btn btn-outline-primary" href="https://www.amazon.com/100-Startup-Reinvent-Living-Create/dp/0307951529/ref=sr_1_7?s=books&ie=UTF8&qid=1528385959&sr=1-7&keywords=startup&tag=best10stoream-20">View on Amazon</a>
+               </div>
+              </div>
+          </div>
+
+       <div class="col-4">
+             <div class="card border-0 text-center">
+               <div class="card-body">
+                   <p class="lead">The Startup Checklist</p>
+                   <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/check-list.jpg" alt="" height="200">
+                   <p></p>
+                   <a target="_blank" class="btn btn-outline-primary" href="https://www.amazon.com/Startup-Checklist-Scalable-High-Growth-Business/dp/111916379X/ref=sr_1_11?s=books&ie=UTF8&qid=1528385959&sr=1-11&keywords=startup&tag=best10stoream-20">View on Amazon</a>
+               </div>
+              </div>
+          </div>
+
+
+    </div>
+    <br>
+    <hr>
+
 
 
 
