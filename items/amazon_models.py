@@ -38,16 +38,18 @@ class Item(object):
 
 
         for page in range(1, 3):
+            print("looping" + str(page) + " page now")
 
             #Set header
             user_agent = random.choice(user_agent_list)
             print(user_agent)
+
             headers = {
                 'User-Agent': user_agent,
             }
-            #Set proxy
-            proxy  = next(proxy_pool)
-            print(proxy)
+            # Set proxy
+            # proxy  = next(proxy_pool)
+            # print(proxy)
 
             #Set url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
@@ -58,7 +60,7 @@ class Item(object):
                 print("requesting url")
                 r = requests.get(url,
                                  headers=headers,
-                                 proxies={"http":proxy,"https":proxy},
+                                 # proxies={"http":proxy,"https":proxy},
                                  timeout=5)
 
 
@@ -104,7 +106,7 @@ class Item(object):
                             except:
                                 pass
                     except:
-                        pass
+                        print("Didn't get the page url")
 
                     print("--- %s seconds ---" % (time.time() - start_time))
                 else:
@@ -138,17 +140,20 @@ class Item(object):
 
 
         for page in range(1, 3):
+            print("looping" + str(page) + " page now")
+
 
             # set header
             user_agent = random.choice(user_agent_list)
             print(user_agent)
+
             headers = {
                 'user-agent': user_agent
             }
 
             #Set proxy
-            proxy = next(proxy_pool)
-            print(proxy)
+            # proxy = next(proxy_pool)
+            # print(proxy)
 
             #Set Url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
@@ -159,7 +164,7 @@ class Item(object):
                 print("requesting url")
                 r = requests.get(url,
                                  headers=headers,
-                                 proxies={"http":proxy, "https":proxy},
+                                 # proxies={"http":proxy, "https":proxy},
                                  timeout=5)
 
                 print("Status_code: " + str(r.status_code))
@@ -223,7 +228,7 @@ class Item(object):
                     )
                     print("Backup-Parsing failed")
             except:
-                pass
+                print("didn't get the url")
 
             # sort item list by rating_count
             rating_count_sort = sorted(item_list, key=lambda x: x.rating_count, reverse=True)
