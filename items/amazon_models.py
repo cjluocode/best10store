@@ -55,15 +55,16 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
+                print("requesting url")
                 r = requests.get(url,
                                  headers=headers,
                                  proxies={"http":proxy,"https":proxy},
                                  timeout=5)
 
 
-                print('getting to items')
+
                 # sleep(5)while True:
-                print(r.status_code)
+                print("status_code: " + str(r.status_code))
 
 
                 if int(r.status_code) == 200:
@@ -155,6 +156,7 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
+                print("requesting url")
                 r = requests.get(url,
                                  headers=headers,
                                  proxies={"http":proxy, "https":proxy},
