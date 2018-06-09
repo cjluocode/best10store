@@ -37,12 +37,12 @@ class Item(object):
 
 
 
-        for page in range(1, 3):
-            print("looping" + str(page) + " page now")
+        for page in range(1,3):
+            print("looping " + str(page) + " page now")
 
             #Set header
             user_agent = random.choice(user_agent_list)
-            print(user_agent)
+            # print(user_agent)
 
             headers = {
                 'User-Agent': user_agent,
@@ -57,12 +57,12 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
-                print("requesting url")
+                print("requesting geting url")
                 r = requests.get(url,
                                  headers=headers,
                                  # proxies={"http":proxy,"https":proxy},
                                  timeout=5)
-
+                print("got it url")
 
 
                 # sleep(5)while True:
@@ -70,7 +70,7 @@ class Item(object):
 
 
                 if int(r.status_code) == 200:
-                    print("looks great")
+
 
                     soup = BeautifulSoup(r.content, "html.parser")
                     try:
@@ -103,11 +103,13 @@ class Item(object):
                                     new_item.image = img
                                     new_item.price = price
                                     item_list.append(new_item)
+
                             except:
                                 pass
                     except:
                         print("Didn't get the page url")
 
+                    print("parsing finished")
                     print("--- %s seconds ---" % (time.time() - start_time))
                 else:
                     send_mail(
@@ -140,12 +142,12 @@ class Item(object):
 
 
         for page in range(1, 3):
-            print("looping" + str(page) + " page now")
+            print("looping " + str(page) + " page now")
 
 
             # set header
             user_agent = random.choice(user_agent_list)
-            print(user_agent)
+            # print(user_agent)
 
             headers = {
                 'user-agent': user_agent
@@ -155,22 +157,22 @@ class Item(object):
             # proxy = next(proxy_pool)
             # print(proxy)
 
-            #Set Url
+            # Set url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
-                print("requesting url")
+                print("request getting url")
                 r = requests.get(url,
                                  headers=headers,
                                  # proxies={"http":proxy, "https":proxy},
                                  timeout=5)
-
+                print("got the url")
                 print("Status_code: " + str(r.status_code))
 
                 if int(r.status_code) == 200:
-                    print("looks great")
+
 
                     soup = BeautifulSoup(r.content, "html.parser")
 
@@ -180,6 +182,7 @@ class Item(object):
                     title = ''
                     link  = ""
                     image = ""
+
                     for li in all_li:
                         # Get Title and Link
                         all_tags = li.find_all('a', class_='a-link-normal')
@@ -230,11 +233,11 @@ class Item(object):
             except:
                 print("didn't get the url")
 
-            # sort item list by rating_count
-            rating_count_sort = sorted(item_list, key=lambda x: x.rating_count, reverse=True)
+        # sort item list by rating_count
+        rating_count_sort = sorted(item_list, key=lambda x: x.rating_count, reverse=True)
 
-            # sort top 10 rating_count_sort by rating
-            rating_sort = sorted(rating_count_sort[:10], key=lambda x: x.rating, reverse=True)
+        # sort top 10 rating_count_sort by rating
+        rating_sort = sorted(rating_count_sort[:10], key=lambda x: x.rating, reverse=True)
 
 
-            return  rating_sort
+        return  rating_sort
