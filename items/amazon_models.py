@@ -7,6 +7,7 @@ import random
 from .proxy_scraper import get_proxies
 from itertools import cycle
 from django.core.mail import send_mail
+from time import sleep
 # Create Amazon item model
 
 proxies = get_proxies()
@@ -63,9 +64,10 @@ class Item(object):
                                  # proxies={"http":proxy,"https":proxy},
                                  timeout=5)
                 print("got it url")
+                sleep.time(2)
 
 
-                # sleep(5)while True:
+
                 print("status_code: " + str(r.status_code))
 
 
