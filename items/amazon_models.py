@@ -64,7 +64,7 @@ class Item(object):
                                  # proxies={"http":proxy,"https":proxy},
                                  timeout=5)
                 print("got it url")
-                sleep.time(2)
+                sleep(2)
 
 
 
