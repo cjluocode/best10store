@@ -172,6 +172,8 @@ class Item(object):
                                  # proxies={"http":proxy, "https":proxy},
                                  timeout=5)
                 print("got the url")
+                sleep(3)
+                print("sleeping 3 seconds")
                 print("Status_code: " + str(r.status_code))
                 if int(r.status_code) == 200:
 
