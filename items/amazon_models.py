@@ -31,6 +31,7 @@ class Item(object):
 
     # Primary Search
     def get_items(self,q_word=None):
+        get_proxies()
 
         item_list = []
         start_time = time.time()
@@ -49,8 +50,8 @@ class Item(object):
                 'User-Agent': user_agent,
             }
             # Set proxy
-            # proxy  = next(proxy_pool)
-            # print(proxy)
+            proxy  = next(proxy_pool)
+            print(proxy)
 
             #Set url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
@@ -61,7 +62,7 @@ class Item(object):
                 print("requesting getting url")
                 r = requests.get(url,
                                  headers=headers,
-                                 # proxies={"http":proxy,"https":proxy},
+                                 proxies={"http":proxy,"https":proxy},
                                  timeout=5)
                 print("got it url")
                 sleep(3)

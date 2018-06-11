@@ -9,6 +9,7 @@ def get_proxies():
 
     for i in parser.xpath('//tbody/tr')[:10]:
         if i.xpath('.//td[7][contains(text(), "yes")]'):
+            print(i.xpath(".//td[5]/text()"))
             proxy = ":".join([i.xpath('.//td[1]/text()')[0], i.xpath('.//td[2]/text()')[0]])
             proxies.add(proxy)
 
