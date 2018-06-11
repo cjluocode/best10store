@@ -173,7 +173,6 @@ class Item(object):
                                  timeout=5)
                 print("got the url")
                 print("Status_code: " + str(r.status_code))
-
                 if int(r.status_code) == 200:
 
 
