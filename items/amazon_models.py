@@ -60,17 +60,21 @@ class Item(object):
 
             try:
                 print("requesting getting url")
-                r = requests.get(url,
-                                 headers=headers,
-                                 proxies={"http":proxy,"https":proxy},
-                                 timeout=5)
-                print("got it url")
-                sleep(3)
-                print("sleeping 3 second")
+                if proxy:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     proxies={"http":proxy,"https":proxy},
+                                     timeout=5)
+                else:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     timeout=5)
 
+                    print("got it url")
+                    sleep(3)
+                    print("sleeping 3 second")
 
-
-                print("status_code: " + str(r.status_code))
+                    print("status_code: " + str(r.status_code))
 
 
                 if int(r.status_code) == 200:
@@ -168,10 +172,15 @@ class Item(object):
 
             try:
                 print("request getting url")
-                r = requests.get(url,
-                                 headers=headers,
-                                 proxies={"http":proxy, "https":proxy},
-                                 timeout=5)
+                if proxy:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     proxies={"http":proxy, "https":proxy},
+                                     timeout=5)
+                else:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     timeout=5)
                 print("got the url")
                 sleep(3)
                 print("sleeping 3 seconds")

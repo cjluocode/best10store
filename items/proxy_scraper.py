@@ -7,9 +7,8 @@ def get_proxies():
     parser = fromstring(response.text)
     proxies = set()
 
-    for i in parser.xpath('//tbody/tr')[:10]:
-        if i.xpath('.//td[7][contains(text(), "yes")]'):
-            print(i.xpath(".//td[5]/text()"))
+    for i in parser.xpath('//tbody/tr')[:21]:
+        if i.xpath('.//td[7][contains(text(), "yes")]') and i.xpath('.//.//td[5][contains(text(), "elite")]'):
             proxy = ":".join([i.xpath('.//td[1]/text()')[0], i.xpath('.//td[2]/text()')[0]])
             proxies.add(proxy)
 
