@@ -58,13 +58,14 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
-                print("requesting geting url")
+                print("requesting getting url")
                 r = requests.get(url,
                                  headers=headers,
                                  # proxies={"http":proxy,"https":proxy},
                                  timeout=5)
                 print("got it url")
-                sleep(2)
+                sleep(3)
+                print("sleeping 3 second")
 
 
 
