@@ -157,8 +157,8 @@ class Item(object):
             }
 
             #Set proxy
-            # proxy = next(proxy_pool)
-            # print(proxy)
+            proxy = next(proxy_pool)
+            print(proxy)
 
             # Set url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
@@ -169,7 +169,7 @@ class Item(object):
                 print("request getting url")
                 r = requests.get(url,
                                  headers=headers,
-                                 # proxies={"http":proxy, "https":proxy},
+                                 proxies={"http":proxy, "https":proxy},
                                  timeout=5)
                 print("got the url")
                 sleep(3)
