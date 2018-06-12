@@ -61,16 +61,21 @@ class Item(object):
             try:
                 print("requesting getting url")
 
-                r = requests.get(url,
-                                 headers=headers,
-                                 proxies={"http":proxy,"https":proxy},
-                                 timeout=5)
+                if proxy:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     proxies={"http":proxy,"https":proxy},
+                                     timeout=5)
+                else:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     timeout=5)
+                    print('no proxy this time')
 
 
                 print("got it url")
                 sleep(5)
                 print("sleeping 3 second")
-
                 print("status_code: " + str(r.status_code))
 
 
@@ -168,11 +173,16 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
-
-                r = requests.get(url,
-                                 headers=headers,
-                                 proxies={"http":proxy, "https":proxy},
-                                 timeout=5)
+                if proxy:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     proxies={"http":proxy, "https":proxy},
+                                     timeout=5)
+                else:
+                    r = requests.get(url,
+                                     headers=headers,
+                                     timeout=5)
+                    print("this time no proxy")
 
                 print("got the url")
                 sleep(3)
