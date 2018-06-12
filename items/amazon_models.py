@@ -74,7 +74,7 @@ class Item(object):
 
 
                 print("got it url")
-                sleep(5)
+                sleep(2)
                 print("sleeping 3 second")
                 print("status_code: " + str(r.status_code))
 
