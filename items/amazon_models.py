@@ -60,21 +60,18 @@ class Item(object):
 
             try:
                 print("requesting getting url")
-                if proxy:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     proxies={"http":proxy,"https":proxy},
-                                     timeout=5)
-                else:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     timeout=5)
 
-                    print("got it url")
-                    sleep(3)
-                    print("sleeping 3 second")
+                r = requests.get(url,
+                                 headers=headers,
+                                 proxies={"http":proxy,"https":proxy},
+                                 timeout=5)
 
-                    print("status_code: " + str(r.status_code))
+
+                print("got it url")
+                sleep(5)
+                print("sleeping 3 second")
+
+                print("status_code: " + str(r.status_code))
 
 
                 if int(r.status_code) == 200:
@@ -82,9 +79,9 @@ class Item(object):
 
                     soup = BeautifulSoup(r.content, "html.parser")
                     try:
-
                         ul = soup.find('div', {'id': "resultsCol"})
                         all_li = ul.find_all('li', class_='s-result-item')
+
 
                         for li in all_li:
                             all_a = li.find_all('a')
@@ -171,20 +168,17 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             try:
-                print("request getting url")
-                if proxy:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     proxies={"http":proxy, "https":proxy},
-                                     timeout=5)
-                else:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     timeout=5)
+
+                r = requests.get(url,
+                                 headers=headers,
+                                 proxies={"http":proxy, "https":proxy},
+                                 timeout=5)
+
                 print("got the url")
                 sleep(3)
                 print("sleeping 3 seconds")
                 print("Status_code: " + str(r.status_code))
+
                 if int(r.status_code) == 200:
 
 
