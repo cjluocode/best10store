@@ -74,7 +74,7 @@ class Item(object):
 
 
                 print("got it url")
-                sleep(2)
+                sleep(5)
                 print("sleeping 3 second")
                 print("status_code: " + str(r.status_code))
 
@@ -185,7 +185,7 @@ class Item(object):
                     print("this time no proxy")
 
                 print("got the url")
-                sleep(3)
+                sleep(5)
                 print("sleeping 3 seconds")
                 print("Status_code: " + str(r.status_code))
 
