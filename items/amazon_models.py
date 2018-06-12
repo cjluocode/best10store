@@ -50,34 +50,55 @@ class Item(object):
                 'User-Agent': user_agent,
             }
             # Set proxy
-            proxy  = next(proxy_pool)
-            print(proxy)
+            # proxy  = next(proxy_pool)
+            # print(proxy)
 
             #Set url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
+            proxy_host = "proxy.crawlera.com"
+            proxy_port = "8010"
+            proxy_auth = "5b115385a7f3490bbbb35fa44d8b9bf9:"
+            proxies = {"https": "https://{}@{}:{}/".format(proxy_auth, proxy_host, proxy_port),
+                       "http": "http://{}@{}:{}/".format(proxy_auth, proxy_host, proxy_port)}
+
             try:
                 print("requesting getting url")
 
-                if proxy:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     proxies={"http":proxy,"https":proxy},
-                                     timeout=5)
-                else:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     timeout=5)
-                    print('no proxy this time')
+
+                r = requests.get(url,
+                                 headers=headers,
+                                 proxies=proxies,
+                                 verify=False,
+                                 )
+
+                # print("""
+                # Requesting [{}]
+                # through proxy [{}]
+                #
+                # Request Headers:
+                # {}
+                #
+                # Response Time: {}
+                # Response Code: {}
+                # Response Headers:
+                # {}
+                #
+                # """.format(url, proxy_host, r.request.headers, r.elapsed.total_seconds(),
+                #            r.status_code, r.headers, r.text))
+                # else:
+                #     r = requests.get(url,
+                #                      headers=headers,
+                #                      timeout=5)
+                #     print('no proxy this time')
 
 
                 print("got it url")
-                sleep(5)
-                print("sleeping 3 second")
+                # sleep(5)
+                # print("sleeping 3 second")
                 print("status_code: " + str(r.status_code))
-
 
                 if int(r.status_code) == 200:
 
@@ -164,28 +185,30 @@ class Item(object):
             }
 
             #Set proxy
-            proxy = next(proxy_pool)
-            print(proxy)
+            # proxy = next(proxy_pool)
+            # print(proxy)
 
             # Set url
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
+            #Set proxy
+            proxy_host = "proxy.crawlera.com"
+            proxy_port = "8010"
+            proxy_auth = "5b115385a7f3490bbbb35fa44d8b9bf9:"
+            proxies = {"https": "https://{}@{}:{}/".format(proxy_auth, proxy_host, proxy_port),
+                       "http": "http://{}@{}:{}/".format(proxy_auth, proxy_host, proxy_port)}
+
             try:
-                if proxy:
-                    r = requests.get(url,
+                r = requests.get(url,
                                      headers=headers,
-                                     proxies={"http":proxy, "https":proxy},
-                                     timeout=5)
-                else:
-                    r = requests.get(url,
-                                     headers=headers,
-                                     timeout=5)
-                    print("this time no proxy")
+                                     proxies=proxies,
+                                     verify=False)
+
 
                 print("got the url")
-                sleep(5)
+                # sleep(5)
                 print("sleeping 3 seconds")
                 print("Status_code: " + str(r.status_code))
 
