@@ -59,6 +59,7 @@ class Item(object):
                                  headers=headers,
                                  proxies=proxies,
                                  verify=False,
+                                 timeout=29
                                  )
 
 
