@@ -31,7 +31,7 @@ class Item(object):
         start_time = time.time()
 
 
-        for page in range(1,3):
+        for page in range(1,2):#change to 1 page due to timeout issue
             print("looping " + str(page) + " page now")
 
             #Set header
