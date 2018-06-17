@@ -25,9 +25,7 @@ class Item(object):
 
     def get_items(self,q_word=None):
 
-
         item_list = []
-
         start_time = time.time()
 
 
@@ -46,6 +44,7 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
 
+            # Set Proxy
             proxy_host = "proxy.crawlera.com"
             proxy_port = "8010"
             proxy_auth = "5b115385a7f3490bbbb35fa44d8b9bf9:"
@@ -120,6 +119,8 @@ class Item(object):
         sorted_item_list = self.sort_item_list(item_list)
 
         return sorted_item_list
+
+
 
 
     def sort_item_list(self, item_list):
