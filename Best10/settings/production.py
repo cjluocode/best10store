@@ -24,7 +24,7 @@ SECRET_KEY = 'gd9dk-yvcsdhkjhalkas8tx#d6z_v5ynm%y9pgzakjsdkhaljjjq@%5@+if5)ya'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.53.207.47']
+ALLOWED_HOSTS = ['18.191.246.56']
 
 
 # Application definition
@@ -119,7 +119,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+
 
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
@@ -130,6 +130,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # Static files
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
@@ -142,3 +143,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 #               "https" : os.environ.get('FIXIE_URL', '')
 #             }
 # r = requests.get('http://www.example.com', proxies=proxyDict)
+
+# Set Static file
