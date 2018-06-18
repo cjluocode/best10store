@@ -41,7 +41,7 @@ SECRET_KEY = 'gd9dk-yvcsdhkjhalkas8tx#d6z_v5ynm%y9pgzakjsdkhaljjjq@%5@+if5)ya'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['best-10.herokuapp.com','www.best10.store']
+ALLOWED_HOSTS = ['52.53.207.47']
 
 
 # Application definition
@@ -145,6 +145,9 @@ EMAIL_HOST_USER = "cj160901@gmail.com"
 EMAIL_HOST_PASSWORD = "$luo110015$"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 
