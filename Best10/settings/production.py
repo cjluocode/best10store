@@ -129,3 +129,16 @@ EMAIL_HOST_USER = "cj160901@gmail.com"
 EMAIL_HOST_PASSWORD = "$luo110015$"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+### Heroku static IP setup
+import requests
+import os
+
+proxies = {
+"http": os.environ['QUOTAGUARDSTATIC_URL'],
+"https": os.environ['QUOTAGUARDSTATIC_URL']
+}
+
+res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
+print(res.text)

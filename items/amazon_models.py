@@ -75,7 +75,7 @@ class Item(object):
                             raw_title = item.xpath(XPATH_TITLE)
                             if len(raw_title) > 0:
                                 title = raw_title[0]
-                                print(title)
+
 
                             # Get the Link
                             raw_link = item.xpath(XPATH_LINK)
