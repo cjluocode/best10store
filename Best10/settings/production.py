@@ -17,16 +17,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 
 # Heroku Static IP with QuotaGuard Static
-import requests
-import os
-
-proxies = {
-"http": os.environ['QUOTAGUARDSTATIC_URL'],
-"https": os.environ['QUOTAGUARDSTATIC_URL']
-}
-
-res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
-print("this is the IP" + res.text)
+# import requests
+# import os
+#
+# proxies = {
+# "http": os.environ['QUOTAGUARDSTATIC_URL'],
+# "https": os.environ['QUOTAGUARDSTATIC_URL']
+# }
+#
+# res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
+# print("this is the IP" + res.text)
 
 
 
