@@ -56,19 +56,19 @@ class Item(object):
 
                     for item in all_item_container:
 
-<<<<<<< HEAD
-                            # Get the title
-                            raw_title = item.xpath(XPATH_TITLE)
-                            if len(raw_title) > 0:
-                                title = raw_title[0]
 
-=======
+                        # Get the title
+                        raw_title = item.xpath(XPATH_TITLE)
+                        if len(raw_title) > 0:
+                            title = raw_title[0]
+
+
                         # Get the title
                         raw_title = item.xpath(XPATH_TITLE)
                         if len(raw_title) > 0:
                             title = raw_title[0]
                             print(title)
->>>>>>> 0e5b82eb43f970e1fac04de71fd68f3c67445bbe
+
 
                         # Get the Link
                         raw_link = item.xpath(XPATH_LINK)
