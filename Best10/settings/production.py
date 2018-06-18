@@ -16,15 +16,18 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
+# Heroku Static IP with QuotaGuard Static
+
 import requests
 import os
 
 proxies = {
-"http": os.environ['QUOTAGUARDSTATIC_URL']
+"http": os.environ['QUOTAGUARDSTATIC_URL'],
+"https": os.environ['QUOTAGUARDSTATIC_URL']
 }
 
-res = requests.get("http://ip.jsontest.com/", proxies=proxies)
-print("this is res.text: "+ res.text)
+res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
+print("this is static IP: " + res.text)
 
 
 
