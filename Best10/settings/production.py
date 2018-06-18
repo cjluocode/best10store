@@ -16,6 +16,21 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
+import requests
+import os
+
+proxies = {
+"http": os.environ['QUOTAGUARDSTATIC_URL']
+}
+
+res = requests.get("http://ip.jsontest.com/", proxies=proxies)
+print("this is res.text: "+ res.text)
+
+
+
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -131,24 +146,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-### Heroku static IP setup
-# import requests
-# import os
+
+# ### Heroku Fixe
 #
-# proxies = {
-# "http": os.environ['QUOTAGUARDSTATIC_URL'],
-# "https": os.environ['QUOTAGUARDSTATIC_URL']
-# }
-#
-# res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
-# print(res.text)
-
-
-### Heroku Fixe
-
-import os, requests
-proxyDict = {
-              "http"  : os.environ.get('FIXIE_URL', ''),
-              "https" : os.environ.get('FIXIE_URL', '')
-            }
-r = requests.get('http://www.example.com', proxies=proxyDict)
+# import os, requests
+# proxyDict = {
+#               "http"  : os.environ.get('FIXIE_URL', ''),
+#               "https" : os.environ.get('FIXIE_URL', '')
+#             }
+# r = requests.get('http://www.example.com', proxies=proxyDict)
