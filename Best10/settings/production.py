@@ -15,19 +15,29 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+#Heroku Static Ip with Fixe
+# import os, requests
+# proxyDict = {
+#               "http"  : os.environ.get('FIXIE_URL', ''),
+#               "https" : os.environ.get('FIXIE_URL', '')
+#             }
+# r = requests.get('http://www.example.com', proxies=proxyDict)
+
+
+
 
 # Heroku Static IP with QuotaGuard Static
 
-import requests
-import os
-
-proxies = {
-"http": os.environ['QUOTAGUARDSTATIC_URL'],
-"https": os.environ['QUOTAGUARDSTATIC_URL']
-}
-
-res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
-print("this is static IP: " + res.text)
+# import requests
+# import os
+#
+# proxies = {
+# "http": os.environ['QUOTAGUARDSTATIC_URL'],
+# "https": os.environ['QUOTAGUARDSTATIC_URL']
+# }
+#
+# res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
+# print("this is static IP: " + res.text)
 
 
 
