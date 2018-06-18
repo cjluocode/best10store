@@ -164,8 +164,8 @@ class Item(object):
     def getProxy(self):
         # Put here your proxies like <ip:port>
         proxies = [
-            #"108.59.14.208:13081",
-            #"37.48.118.90:13081"
+            "108.59.14.208:13040",
+            "108.59.14.203:13040"
         ]
 
         if len(proxies) == 1:
