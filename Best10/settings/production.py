@@ -15,23 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-# Heroku Static IP with QuotaGuard Static
-# import requests
-# import os
-#
-# proxies = {
-# "http": os.environ['QUOTAGUARDSTATIC_URL'],
-# "https": os.environ['QUOTAGUARDSTATIC_URL']
-# }
-#
-# res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
-# print("this is the IP" + res.text)
-
-
-
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 

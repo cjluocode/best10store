@@ -29,7 +29,7 @@ class Item(object):
         start_time = time.time()
 
 
-        for page in range(1,2):#change to 1 page due to timeout issue
+        for page in range(1,3):#change to 1 page due to timeout issue
             print("looping " + str(page) + " page now")
 
             #Set header
@@ -171,7 +171,7 @@ class Item(object):
 
     def getProxy(self):
         # Put here your proxies like <ip:port>
-        #108.59.14.208:13040
+        # 108.59.14.208:13040
         proxies = [
             "108.59.14.208:13040",
             "108.59.14.203:13040"
