@@ -20,6 +20,7 @@ from items.views import item_list
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',item_list, name="item-list"),
+    url(r'^', include('blogs.urls', namespace='blogs')),
     url(r'^', include('landing_page.urls', namespace='landing_page'))
 
 ]

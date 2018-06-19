@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # Amazon Item App
     'items',
+
+    #Blog
+    'blogs',
 ]
 
 MIDDLEWARE = [

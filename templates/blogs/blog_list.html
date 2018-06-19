@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+    <br>
+    <h1 class="">Blog</h1>
+    <hr>
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-6">
+          {% include 'blogs/card.html' with blog=blog %}
+        </div>
+           {% endfor %}
+    </div>
+    <br>
+    <hr>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+

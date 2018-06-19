@@ -41,20 +41,16 @@ class Item(object):
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
-            # Set Proxy
-
-
-
 
             r = self.load_page(url=url, headers = headers, is_proxy= True)
 
 
             if r:
-
                 if int(r.status_code) == 200:
                     try:
                         parser = html.fromstring(r.content)
                         all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
+
 
                         for item in all_item_container:
 
