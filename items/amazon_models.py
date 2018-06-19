@@ -21,28 +21,25 @@ class Item(object):
 
 
     def get_items(self,q_word=None):
-
-        item_list = []
+        #set start time
         start_time = time.time()
 
+        item_list = []
 
         for page in range(1,3):#change to 1 page due to timeout issue
             print("looping " + str(page) + " page now")
 
-            #Set header
-            user_agent = random.choice(user_agent_list)
-            headers = {
-                'User-Agent': user_agent,
-            }
+            try:
+                # Set header
+                headers = {
+                    'User-Agent': random.choice(user_agent_list),
+                }
 
-            # Set url
-            url = set_url(q_word,page)
+                # Set url
+                url = set_url(q_word, page)
 
-
-            response = self.load_page(url=url, headers = headers, is_proxy= True)
-
-
-            if response:
+                # Get the response
+                response = self.load_page(url=url, headers=headers, is_proxy=True)
 
                 if int(response.status_code) == 200:
                     try:
@@ -52,14 +49,12 @@ class Item(object):
 
                         for item in all_item_container:
 
-
-                            # Get the title
+                            # Get item's title,link,image_url,rating_count,rating
                             item_title = parse_title(item)
                             item_link  = parse_link(item)
                             item_image_url = parse_image(item)
                             item_rating_counts = parse_rating_count(item)
                             item_rating = parse_rating(item)
-
 
 
                             # Create new item then append to item_list
@@ -77,12 +72,14 @@ class Item(object):
                             item_list.append(new_item)
 
                     except Exception as e:
-                        print(e)
+                       print(e)
 
-            print("--- %s seconds ---" % (time.time() - start_time))
+            except Exception as e:
+                print(e)
 
         sorted_item_list = self.sort_item_list(item_list)
 
+        print("--- %s seconds ---" % (time.time() - start_time))
         return sorted_item_list
 
 
