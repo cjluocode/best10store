@@ -47,62 +47,64 @@ class Item(object):
 
 
             print("requesting getting url")
-            print("status_code: " + str(r.status_code))
+            # print("status_code: " + str(r.status_code))
 
-            if int(r.status_code) == 200:
-                try:
-                    parser = html.fromstring(r.content)
-                    all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
+            if r:
 
-                    for item in all_item_container:
+                if int(r.status_code) == 200:
+                    try:
+                        parser = html.fromstring(r.content)
+                        all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
 
-
-                        # Get the title
-                        raw_title = item.xpath(XPATH_TITLE)
-                        if len(raw_title) > 0:
-                            title = raw_title[0]
+                        for item in all_item_container:
 
 
-                        # Get the title
-                        raw_title = item.xpath(XPATH_TITLE)
-                        if len(raw_title) > 0:
-                            title = raw_title[0]
-                            print(title)
+                            # Get the title
+                            raw_title = item.xpath(XPATH_TITLE)
+                            if len(raw_title) > 0:
+                                title = raw_title[0]
 
 
-                        # Get the Link
-                        raw_link = item.xpath(XPATH_LINK)
-                        if len(raw_link) > 0:
-                            link = raw_link[0]
+                            # Get the title
+                            raw_title = item.xpath(XPATH_TITLE)
+                            if len(raw_title) > 0:
+                                title = raw_title[0]
+                                print(title)
 
-                        # Get image
-                        raw_image = item.xpath(XPATH_IMAGE)
-                        if len(raw_image) >= 1:
-                            image = raw_image[-1]
 
-                        # Get rating counts
-                        raw_rating_counts = item.xpath(XPATH_RATING_COUNT)
-                        if len(raw_rating_counts) >= 1:
-                            raw_rating_counts = raw_rating_counts[-1].text
-                            rating_counts = int(raw_rating_counts.replace(',', ''))
+                            # Get the Link
+                            raw_link = item.xpath(XPATH_LINK)
+                            if len(raw_link) > 0:
+                                link = raw_link[0]
 
-                        # Get the ratings
-                        raw_rating = item.xpath(XPATH_RATING)
-                        if len(raw_rating) >= 1:
-                            rating = float(raw_rating[-1].split("out")[0])
+                            # Get image
+                            raw_image = item.xpath(XPATH_IMAGE)
+                            if len(raw_image) >= 1:
+                                image = raw_image[-1]
 
-                        # Create new item then append to
-                        new_item = Item()
-                        new_item.title = title
-                        new_item.link = link
-                        new_item.image = image
-                        new_item.rating_count = rating_counts
-                        new_item.rating = rating
+                            # Get rating counts
+                            raw_rating_counts = item.xpath(XPATH_RATING_COUNT)
+                            if len(raw_rating_counts) >= 1:
+                                raw_rating_counts = raw_rating_counts[-1].text
+                                rating_counts = int(raw_rating_counts.replace(',', ''))
 
-                        item_list.append(new_item)
+                            # Get the ratings
+                            raw_rating = item.xpath(XPATH_RATING)
+                            if len(raw_rating) >= 1:
+                                rating = float(raw_rating[-1].split("out")[0])
 
-                except Exception as e:
-                    print(e)
+                            # Create new item then append to
+                            new_item = Item()
+                            new_item.title = title
+                            new_item.link = link
+                            new_item.image = image
+                            new_item.rating_count = rating_counts
+                            new_item.rating = rating
+
+                            item_list.append(new_item)
+
+                    except Exception as e:
+                        print(e)
 
             print("--- %s seconds ---" % (time.time() - start_time))
 
