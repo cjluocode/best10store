@@ -1,11 +1,10 @@
 import time
 import requests
-from .algorithms import *
 from .user_agent import user_agent_list
 import random
-from .xpath import *
 from lxml import html
 import toolz
+from .helper_function import *
 
 
 # Create Amazon item model
@@ -37,18 +36,17 @@ class Item(object):
             }
 
             # Set url
-            pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
-            keyword_url = '&field-keywords=%s' % q_word
-            url = pre_url + keyword_url + '&page={0}'.format(page)
+            url = set_url(q_word,page)
 
 
-            r = self.load_page(url=url, headers = headers, is_proxy= True)
+            response = self.load_page(url=url, headers = headers, is_proxy= True)
 
 
-            if r:
-                if int(r.status_code) == 200:
+            if response:
+
+                if int(response.status_code) == 200:
                     try:
-                        parser = html.fromstring(r.content)
+                        parser = html.fromstring(response.content)
                         all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
 
 
@@ -56,46 +54,25 @@ class Item(object):
 
 
                             # Get the title
-                            raw_title = item.xpath(XPATH_TITLE)
-                            if len(raw_title) > 0:
-                                title = raw_title[0]
-
-
-                            # Get the title
-                            raw_title = item.xpath(XPATH_TITLE)
-                            if len(raw_title) > 0:
-                                title = raw_title[0]
+                            item_title = parse_title(item)
+                            item_link  = parse_link(item)
+                            item_image_url = parse_image(item)
+                            item_rating_counts = parse_rating_count(item)
+                            item_rating = parse_rating(item)
 
 
 
-                            # Get the Link
-                            raw_link = item.xpath(XPATH_LINK)
-                            if len(raw_link) > 0:
-                                link = raw_link[0]
-
-                            # Get image
-                            raw_image = item.xpath(XPATH_IMAGE)
-                            if len(raw_image) >= 1:
-                                image = raw_image[-1]
-
-                            # Get rating counts
-                            raw_rating_counts = item.xpath(XPATH_RATING_COUNT)
-                            if len(raw_rating_counts) >= 1:
-                                raw_rating_counts = raw_rating_counts[-1].text
-                                rating_counts = int(raw_rating_counts.replace(',', ''))
-
-                            # Get the ratings
-                            raw_rating = item.xpath(XPATH_RATING)
-                            if len(raw_rating) >= 1:
-                                rating = float(raw_rating[-1].split("out")[0])
-
-                            # Create new item then append to
+                            # Create new item then append to item_list
                             new_item = Item()
-                            new_item.title = title
-                            new_item.link = link
-                            new_item.image = image
-                            new_item.rating_count = rating_counts
-                            new_item.rating = rating
+                            new_item.title = item_title
+                            new_item.link = item_link
+                            new_item.image = item_image_url
+
+                            if item_rating_counts:
+                                new_item.rating_count = item_rating_counts
+                            if item_rating:
+                                new_item.rating = item_rating
+                                new_item.hotscore = get_hotscore(item_rating)
 
                             item_list.append(new_item)
 
