@@ -8,6 +8,10 @@ from .proxy_scraper import get_proxies
 from .xpath import *
 from lxml import html
 import toolz
+from .rotatingproxy import RotatingProxy
+rproxy = RotatingProxy()
+
+
 # Create Amazon item model
 
 
@@ -21,6 +25,13 @@ class Item(object):
         self.hotscore = 90
         self.image    = ""
         self.price    = 1
+
+    # def get_proxy_from_file(self):
+    #     rproxy.set_proxy(israndom="r")  # select a random proxy server
+    #     rproxy.set_proxy(israndom="r")  # select a random proxy server
+    #     with open("proxy.txt", "r") as f:
+    #         return loads(f.read())
+
 
 
     def get_items(self,q_word=None):
@@ -43,11 +54,21 @@ class Item(object):
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
-            r = self.load_page(url=url, headers = headers, is_proxy= True)
+            # Set Proxy
+            proxies = {'http': 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
+                       'https': 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280'}
+
+
+
+            # r = self.load_page(url=url, headers = headers, is_proxy= True)
+
+            r = requests.get(url=url,
+                         proxies=proxies,
+                         headers=headers)
 
 
             print("requesting getting url")
-            # print("status_code: " + str(r.status_code))
+            print("status_code: " + str(r.status_code))
 
             if r:
 
@@ -69,7 +90,7 @@ class Item(object):
                             raw_title = item.xpath(XPATH_TITLE)
                             if len(raw_title) > 0:
                                 title = raw_title[0]
-                                print(title)
+
 
 
                             # Get the Link
@@ -129,6 +150,7 @@ class Item(object):
         return rating_sort
 
         # TODO: load page into bs4
+
 
     def load_page(self, url, headers, is_proxy=False, max_try_num=20):
         print("[+++][PROXY] Now url is : {}".format(url))
