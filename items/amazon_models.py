@@ -44,7 +44,7 @@ class Item(object):
             # Set Proxy
 
 
-            print(proxies)
+
 
             r = self.load_page(url=url, headers = headers, is_proxy= True)
 
