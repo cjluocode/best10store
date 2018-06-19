@@ -1,20 +1,14 @@
 import time
 import requests
-from bs4 import BeautifulSoup
 from .algorithms import *
 from .user_agent import user_agent_list
 import random
-from .proxy_scraper import get_proxies
 from .xpath import *
 from lxml import html
 import toolz
-from .rotatingproxy import RotatingProxy
-rproxy = RotatingProxy()
 
 
 # Create Amazon item model
-
-
 
 class Item(object):
     def __init__(self):
@@ -25,13 +19,6 @@ class Item(object):
         self.hotscore = 90
         self.image    = ""
         self.price    = 1
-
-    # def get_proxy_from_file(self):
-    #     rproxy.set_proxy(israndom="r")  # select a random proxy server
-    #     rproxy.set_proxy(israndom="r")  # select a random proxy server
-    #     with open("proxy.txt", "r") as f:
-    #         return loads(f.read())
-
 
 
     def get_items(self,q_word=None):
@@ -55,20 +42,12 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             # Set Proxy
-            proxies = {'http': 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
-                       'https': 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280'}
 
 
+            print(proxies)
 
-            # r = self.load_page(url=url, headers = headers, is_proxy= True)
+            r = self.load_page(url=url, headers = headers, is_proxy= True)
 
-            r = requests.get(url=url,
-                         proxies=proxies,
-                         headers=headers)
-
-
-            print("requesting getting url")
-            print("status_code: " + str(r.status_code))
 
             if r:
 
@@ -162,6 +141,7 @@ class Item(object):
                 if is_proxy:
                     proxies = {
                         'https': self.getProxy(),
+                        'http': self.getProxy()
                     }
                     response = requests.get(url=url, headers=headers, proxies=proxies, timeout=5)
                 else:
@@ -195,10 +175,8 @@ class Item(object):
 
     def getProxy(self):
         # Put here your proxies like <ip:port>
-        # 108.59.14.208:13040
         proxies = [
-            "108.59.14.208:13040",
-            "108.59.14.203:13040"
+            'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
         ]
 
         if len(proxies) == 1:
