@@ -111,7 +111,7 @@ class Item(object):
                 if is_proxy:
                     proxies = {
                         'https': self.getProxy(),
-                        'http': self.getProxy()
+                        'http': self.getProxy(),
                     }
                     response = requests.get(url=url, headers=headers, proxies=proxies, timeout=5)
                 else:
