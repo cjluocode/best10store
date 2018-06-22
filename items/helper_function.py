@@ -23,7 +23,7 @@ def parse_link(item):
         if not link.startswith('http'):
             link = 'https://www.amazon.com' + link
 
-        return link
+        return link + "&tag=best10store07-20"
     else:
         return None
 
