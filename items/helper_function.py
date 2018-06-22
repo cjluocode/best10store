@@ -66,7 +66,7 @@ def parse_rating(item):
         if "Prime" in raw_rating and len(raw_rating) >1:
 
             removed_prime_rating = [x for x in raw_rating if x != 'Prime']
-            print(removed_prime_rating)
+
             rating = float(removed_prime_rating[0].split("out")[0])
 
             return rating

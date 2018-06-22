@@ -46,9 +46,7 @@ class Item(object):
 
                         # Get item's title,link,image_url,rating_count,rating
                         item_title = parse_title(item)
-
                         item_link = parse_link(item)
-
                         item_image_url = parse_image(item)
                         item_rating_counts = parse_rating_count(item)
                         item_rating = parse_rating(item)
@@ -82,6 +80,7 @@ class Item(object):
         start_time = time.time()
 
         self.item_list = []
+
         pages = []
         for page in range(1, 4):
             page_url = set_url(q_word, page)
@@ -94,6 +93,7 @@ class Item(object):
         #self.loop_amazon_pages_and_scrape_results(pages[3])
         self._MultiThreadsClass.run_multi(self.loop_amazon_pages_and_scrape_results, pages, len(pages))
         sorted_item_list = self.sort_item_list(self.item_list)
+
 
         print("--- %s seconds ---" % (time.time() - start_time))
         print("---- TOTAL RECORDS: {}".format(len((self.item_list))))
