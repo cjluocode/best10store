@@ -46,16 +46,19 @@ def parse_rating_count(item):
         if not raw_rating_counts:
             raw_rating_counts = item.xpath(XPATH_RATING_COUNT_3)
 
-
     if len(raw_rating_counts) >= 1:
         raw_rating_counts = raw_rating_counts[-1].text
-        rating_counts = int(raw_rating_counts.replace(',', ''))
+        try:
+            rating_counts = int(raw_rating_counts.replace(',', ''))
+        except:
+            rating_counts = 1
+
 
         return rating_counts
 
 def parse_rating(item):
 
-    raw_rating = item.xpath(".//span[@class='a-icon-alt']/text()")
+    raw_rating = item.xpath(".//span[contains(class,'a-icon-star')]//span[@class='a-icon-alt']/text()")
 
     try:
 
@@ -74,6 +77,7 @@ def parse_rating(item):
 
     except Exception as e:
         print(e)
+        return 0
 
 
 
