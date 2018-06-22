@@ -147,12 +147,9 @@ class Item(object):
         # Put here your proxies like <ip:port>
         proxies = [
             'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us-ny.proxymesh.com:31280',
+            'http://best10store:$Best10store$@us.proxymesh.com:31280',
             'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us-ny.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us-ny.proxymesh.com:31280',
-
+            'http://best10store:$Best10store$@us.proxymesh.com:31280',
         ]
 
         if len(proxies) == 1:
