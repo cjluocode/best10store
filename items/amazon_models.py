@@ -134,9 +134,9 @@ class Item(object):
         # }
 
         headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
+            # 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8',
+            # 'accept-encoding': 'gzip, deflate, br',
+            # 'accept-language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
             'User-Agent': random.choice(user_agent_list),
         }
 
@@ -150,7 +150,7 @@ class Item(object):
                 if is_proxy:
                     proxies = {
                         'https': self.getProxy(),
-                        # 'http': self.getProxy(),
+                        'http': self.getProxy(),
                     }
                     response = requests.get(url=url, headers=headers, proxies=proxies, timeout=5)
                 else:
@@ -186,9 +186,9 @@ class Item(object):
         # Put here your proxies like <ip:port>
         proxies = [
             'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
-            'http://best10store:$Best10store$@us.proxymesh.com:31280',
+            # 'http://best10store:$Best10store$@us.proxymesh.com:31280',
+            # 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
+            # 'http://best10store:$Best10store$@us.proxymesh.com:31280',
 
 
 
