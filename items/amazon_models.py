@@ -46,10 +46,13 @@ class Item(object):
 
                         # Get item's title,link,image_url,rating_count,rating
                         item_title = parse_title(item)
+
                         item_link = parse_link(item)
+
                         item_image_url = parse_image(item)
                         item_rating_counts = parse_rating_count(item)
                         item_rating = parse_rating(item)
+
 
                         # Create new item then append to item_list
                         new_item = Item()
@@ -80,7 +83,7 @@ class Item(object):
 
         self.item_list = []
         pages = []
-        for page in range(1, 11):
+        for page in range(1, 7):
             page_url = set_url(q_word, page)
             obj = {
                 "page_url": page_url,

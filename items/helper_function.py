@@ -58,13 +58,15 @@ def parse_rating_count(item):
 
 def parse_rating(item):
 
-    raw_rating = item.xpath(".//span[contains(class,'a-icon-star')]//span[@class='a-icon-alt']/text()")
+    raw_rating = item.xpath(XPATH_RATING)
+
 
     try:
 
         if "Prime" in raw_rating and len(raw_rating) >1:
 
             removed_prime_rating = [x for x in raw_rating if x != 'Prime']
+            print(removed_prime_rating)
             rating = float(removed_prime_rating[0].split("out")[0])
 
             return rating
@@ -83,6 +85,7 @@ def parse_rating(item):
 
 
 def set_url(q_word, page):
+    # url=search-alias%3Dstripbooks&field-keywords=startup&rh=n%3A283155%2Ck%3Astartup
     pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
     keyword_url = '&field-keywords=%s' % q_word
     amazon_url = pre_url + keyword_url + '&page={0}'.format(page)

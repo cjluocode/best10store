@@ -7,4 +7,5 @@ XPATH_IMAGE = ".//a[@class='a-link-normal a-text-normal']/img[@class='s-access-i
 XPATH_RATING_COUNT_1 = ".//div[@class='a-row a-spacing-mini']/a[@class='a-size-small a-link-normal a-text-normal']"
 XPATH_RATING_COUNT_2 = ".//div[@class='a-row a-spacing-top-micro']/a[@class='a-size-small a-link-normal a-text-normal']"
 XPATH_RATING_COUNT_3 = ".//div[@class='a-row a-spacing-top-mini a-spacing-none']/a[@class='a-size-small a-link-normal a-text-normal']"
-XPATH_RATING = ".//i[@class='a-icon a-icon-star a-star-4']/span[@class='a-icon-alt']/text()"
+
+XPATH_RATING = ".//span[@class='a-icon-alt']/text()"

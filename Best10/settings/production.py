@@ -147,13 +147,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 
-# ### Heroku Fixe
-#
-# import os, requests
-# proxyDict = {
-#               "http"  : os.environ.get('FIXIE_URL', ''),
-#               "https" : os.environ.get('FIXIE_URL', '')
-#             }
-# r = requests.get('http://www.example.com', proxies=proxyDict)
-
-# Set Static file
