@@ -35,12 +35,21 @@ class Item(object):
         print("looping " + str(url) + " page now")
         try:
             # Get the response
-            response = self.load_page(url=url, is_proxy=True)
 
+            response = self.load_page(url=url, is_proxy=True)
+            time.sleep(3)
+
+            # print(response.status_code)
             if int(response.status_code) == 200:
+
                 try:
                     parser = html.fromstring(response.content)
+                    print(response.content)
+
+
                     all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
+
+                    # print(all_item_container)
 
                     for item in all_item_container:
 
@@ -82,7 +91,7 @@ class Item(object):
         self.item_list = []
 
         pages = []
-        for page in range(1, 4):
+        for page in range(1, 3):
             page_url = set_url(q_word, page)
             obj = {
                 "page_url": page_url,
@@ -169,7 +178,13 @@ class Item(object):
     def getProxy(self):
         # Put here your proxies like <ip:port>
         proxies = [
+            'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
             'http://best10store:$Best10store$@us.proxymesh.com:31280',
+            'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
+            'http://best10store:$Best10store$@us.proxymesh.com:31280',
+
+
+
             # 'http://best10store:$Best10store$@us-ny.proxymesh.com:31280',
         ]
 
