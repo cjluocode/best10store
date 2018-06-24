@@ -96,7 +96,7 @@ class Item(object):
         self.item_list = []
 
         pages = []
-        for page in range(1, 3):
+        for page in range(1, 4):
             page_url = set_url(q_word, page)
             obj = {
                 "page_url": page_url,
