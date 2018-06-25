@@ -9,3 +9,4 @@ XPATH_RATING_COUNT_2 = ".//div[@class='a-row a-spacing-top-micro']/a[@class='a-s
 XPATH_RATING_COUNT_3 = ".//div[@class='a-row a-spacing-top-mini a-spacing-none']/a[@class='a-size-small a-link-normal a-text-normal']"
 
 XPATH_RATING = ".//span[@class='a-icon-alt']/text()"
+XPATH_PRICE  = ".//span[@class='sx-price-whole']/text()"

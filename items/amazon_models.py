@@ -53,24 +53,22 @@ class Item(object):
 
                     for item in all_item_container:
 
-                        # Get item's title,link,image_url,rating_count,rating
+                        # Get item's title,link,image_url,rating_count,rating,price
                         item_title = parse_title(item)
                         item_link = parse_link(item)
 
                         item_image_url = parse_image(item)
                         item_rating_counts = parse_rating_count(item)
                         item_rating = parse_rating(item)
+                        item_price = parse_price(item)
 
 
                         # Create new item then append to item_list
                         new_item = Item()
                         new_item.title = item_title
-
-
                         new_item.image = item_image_url
-
-
                         new_item.link = item_link
+                        new_item.price = item_price
 
                         if item_rating_counts:
                             new_item.rating_count = item_rating_counts

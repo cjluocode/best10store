@@ -82,6 +82,12 @@ def parse_rating(item):
         print(e)
         return 0
 
+def parse_price(item):
+    raw_price = item.xpath(XPATH_PRICE)
+
+    if len(raw_price) > 0:
+        price = raw_price[0]
+        return price
 
 
 
