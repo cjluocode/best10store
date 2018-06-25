@@ -39,12 +39,12 @@ class Item(object):
             response = self.load_page(url=url, is_proxy=True)
             # time.sleep(3)
 
-            # print(response.status_code)
+
             if int(response.status_code) == 200:
 
                 try:
                     parser = html.fromstring(response.content)
-                    # print(response.content)
+
 
 
                     all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
