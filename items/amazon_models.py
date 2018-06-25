@@ -37,7 +37,7 @@ class Item(object):
             # Get the response
 
             response = self.load_page(url=url, is_proxy=True)
-            time.sleep(3)
+            # time.sleep(3)
 
             # print(response.status_code)
             if int(response.status_code) == 200:
