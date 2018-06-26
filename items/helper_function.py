@@ -46,6 +46,8 @@ def parse_rating_count(item):
         raw_rating_counts = item.xpath(XPATH_RATING_COUNT_2)
         if not raw_rating_counts:
             raw_rating_counts = item.xpath(XPATH_RATING_COUNT_3)
+            if not raw_rating_counts:
+                raw_rating_counts = item.xpath(XPATH_RATING_COUNT_4)
 
     if len(raw_rating_counts) >= 1:
         raw_rating_counts = raw_rating_counts[-1].text
@@ -83,10 +85,13 @@ def parse_rating(item):
         return 0
 
 def parse_price(item):
-    raw_price = item.xpath(XPATH_PRICE)
+    raw_price = item.xpath(XPATH_PRICE_1)
+    if not raw_price:
+        raw_price= item.xpath(XPATH_PRICE_2)
+
 
     if len(raw_price) > 0:
-        price = raw_price[0]
+        price = raw_price[0].replace("$", "")
         return price
 
 
