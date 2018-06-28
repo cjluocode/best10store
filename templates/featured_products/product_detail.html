@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div class="container">
+    <br>
+    <br>
+<div class="jumbotron bg-light">
+    <div class="row">
+        <div class="col-3">
+        <p class="float-left"> <img src="{{ product.image}}" height="200" width="180"></p>
+        </div>
+        <div class="col-9">
+             <h3 class="">{{ product.title }}</h3>
+    <hr>
+  <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30"> <span class="badge badge-pill badge-warning">Rating:{{ product.rating }}</span>
+    <span class="badge badge-pill badge-warning">Count:{{ product.rating_count}}</span>
+   <span class="float-right badge badge-pill badge-warning">Customer satisfaction {{ product.hotscore }}%</span>
+
+    <br>
+    <br>
+    <a class="btn btn-warning btn-sm float-left" href="{{ product.link }} " role="button" target="_blank">View on Amazon</a>
+
+        <a class="btn btn-warning btn-sm float-left" href="{{ product.goodreads_url }} " role="button" target="_blank">View on Goodread</a>
+
+            <br>
+    <hr>
+  <p class="lead">{{product.description|force_escape|linebreaks }}</p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+    <div class="jumbotron jumbotron-fluid bg-light">
+  <div class="container">
+
+    <h3 class="title-text">Top customer reviews from Goodreads<a class="btn btn-warning float-right" href="{{ product.goodreads_url }} " role="button" target="_blank">See more reviews Goodread</a>
+ </h3>
+      <br>
+{% for comment in comments %}
+     <p class="lead">{{ comment.content | linebreaks }}</p>
+            <p class="content-text">-by anonymous users from Goodreads</p>
+
+      {% endfor %}
+
+
+  </div>
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+<br><br><br><br><br>
+{% endblock %}

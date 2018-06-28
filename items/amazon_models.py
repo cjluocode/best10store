@@ -21,6 +21,8 @@ class Item(object):
         self.image    = ""
         self.price    = 1
         self.item_list = []
+        self.goodreads_url = ""
+
 
     def loop_amazon_pages_and_scrape_results(self, data):
         url = data.get("page_url")
@@ -55,8 +57,9 @@ class Item(object):
 
                         # Get item's title,link,image_url,rating_count,rating,price
                         item_title = parse_title(item)
-                        item_link = parse_link(item)
+                        item_goodreads_url = parse_goodreads_url(item_title)
 
+                        item_link = parse_link(item)
                         item_image_url = parse_image(item)
                         item_rating_counts = parse_rating_count(item)
                         item_rating = parse_rating(item)
@@ -69,6 +72,8 @@ class Item(object):
                         new_item.image = item_image_url
                         new_item.link = item_link
                         new_item.price = item_price
+                        new_item.goodreads_url = item_goodreads_url
+
 
                         if item_rating_counts:
                             new_item.rating_count = item_rating_counts

@@ -1,4 +1,6 @@
 from .xpath import *
+import urllib.parse
+
 
 def parse_title(item):
 
@@ -93,6 +95,21 @@ def parse_price(item):
     if len(raw_price) > 0:
         price = raw_price[0].replace("$", "")
         return price
+
+
+def parse_goodreads_url(title):
+    try:
+        pre_url = 'https://www.goodreads.com/search'
+        query_title = urllib.parse.quote_plus(title)
+        url = pre_url + "?q=" + query_title
+
+        return url
+
+
+    except Exception as e:
+        print(e)
+
+
 
 
 

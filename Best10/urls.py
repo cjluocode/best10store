@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from items.views import item_list
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',item_list, name="item-list"),
+    url(r'^',include('items.urls', namespace='items')),
     url(r'^', include('blogs.urls', namespace='blogs')),
-    url(r'^', include('landing_page.urls', namespace='landing_page'))
-
+    url(r'^', include('landing_page.urls', namespace='landing_page')),
+    url(r'^', include('featured_products.urls', namespace='featured-products')),
 ]

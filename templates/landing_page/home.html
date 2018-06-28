@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{% include 'items/jumbotron.html' %}
+
+{% include 'landing_page/product_navbar.html' %}
+
+{% include 'featured_products/product_card.html' with item_list=featured_products %}
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<style>
+ .jumbotron{
+    background-color: #FCEFE7;
+    }
+
+.search-cards {
+
+   background-color: #FCEFE7;
+}
+
+</style>
+
+{% include 'items/jumbotron.html' %}
+
+
+
+
+
+
+{% if error %}
+<p class="lead text-center" >{{ error }}</p>
+{% endif %}
+
+{% include 'items/item_card.html' %}
+
+
+
+{% endblock %}

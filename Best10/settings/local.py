@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     #Blog
     'blogs',
+
+    'featured_products',
 ]
 
 MIDDLEWARE = [
