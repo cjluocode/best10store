@@ -17,7 +17,7 @@ def search_result(request):
         if q_word:
             item = Item()
             search_result = item.get_items(q_word=q_word)
-            # save_product(search_result)
+            save_product(search_result)
 
             for item in search_result:
 
@@ -80,7 +80,7 @@ def save_product(item_list):
         featured_product.price        = product.price
 
         featured_product.goodreads_url = product.goodreads_url
-        featured_product.query_word   = "Investment"
+        featured_product.query_word   = "Programming"
         featured_product.save()
 
     return FeatureProduct.objects.all()
