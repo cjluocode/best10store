@@ -24,7 +24,8 @@
         <p class="text-center"><img src="{{ item.image }}" height="100">&ensp;</p>
 
          <p class="float-left lead"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="22" width="22">Rating:{{ item.rating }}·Count:{{item.rating_count}} {% if item.price %}·Price:${{ item.price}}{% endif %}</p>
-        <a href="/items/detail/{{item.id}}/" target="_blank" class="float-right btn btn-outline-info btn-sm float-right">Get Detail</a>
+
+      <a href="/items/detail/{{item.id}}/" target="_blank" class="float-right btn btn-outline-info btn-sm float-right">Get Detail</a>
 
   </div>
 </div>
