@@ -115,7 +115,7 @@ def parse_goodreads_url(title):
 
 def set_url(q_word, page):
     # url=search-alias%3Dstripbooks&field-keywords=startup&rh=n%3A283155%2Ck%3Astartup
-    pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
+    pre_url = 'https://www.amazon.com/s?url=search-alias%3Dstripbooks'
     keyword_url = '&field-keywords=%s' % q_word
     amazon_url = pre_url + keyword_url + '&page={0}'.format(page)
     return amazon_url
