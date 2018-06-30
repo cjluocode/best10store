@@ -17,7 +17,7 @@ def search_result(request):
         if q_word:
             item = Item()
             search_result = item.get_items(q_word=q_word)
-            save_product(search_result)
+            # save_product(search_result)
 
             for item in search_result:
 
