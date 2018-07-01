@@ -7,7 +7,8 @@ from items.review_model import Review
 
 def product_detail(request, id):
     product = FeatureProduct.objects.get(id=id)
-    review  = Review
+    print(product.link)
+    review  = Review()
     reviews = review.parse_reviews(product.link)
 
     context = {
