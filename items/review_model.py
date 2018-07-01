@@ -3,13 +3,10 @@ from lxml import html
 from .user_agent import user_agent_list
 import random
 
-proxies = {'http': 'http://best10store:$Best10store$@us.proxymesh.com:31280',
-           'https': 'http://best10store:$Best10store$@us.proxymesh.com:31280'}
+proxies = {'http': 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280',
+           'https': 'http://best10store:$Best10store$@us-wa.proxymesh.com:31280'}
 
 headers = {
-    # 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8',
-    # 'accept-encoding': 'gzip, deflate, br',
-    # 'accept-language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
     'User-Agent': random.choice(user_agent_list),
 }
 
