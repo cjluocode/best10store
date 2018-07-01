@@ -40,15 +40,12 @@
     <h3 class="title-text">Top customer reviews from Goodreads<a class="btn btn-warning float-right" href="{{ product.goodreads_url }} " role="button" target="_blank">See more reviews Goodread</a>
  </h3>
       <br>
-{% for comment in comments %}
-     <p class="lead">{{ comment.content | linebreaks }}</p>
+{% for review in reviews %}
+     <p class="lead">{{ review }}</p>
             <p class="content-text">-by anonymous users from Goodreads</p>
-
       {% endfor %}
-
-
   </div>
-
+    <br>
     </div>
 
 

@@ -5,6 +5,7 @@ from .models import SearchItem
 # Create your views here.
 from django.shortcuts import render
 from .amazon_models import Item
+from .review_model import Review
 
 # Home Page
 def search_result(request):
@@ -56,9 +57,18 @@ def search_result(request):
 
 def item_detail(request, id):
     item = SearchItem.objects.get(id=id)
-    print(item.goodreads_url)
+    print(item.link)
+
+    review = Review()
+    reviews = review.parse_reviews(item.link)
+
+
+
+
+
     context = {
-        'item': item
+        'item': item,
+        'reviews': reviews,
 
     }
     return render(request, 'items/item_detail.html', context)
