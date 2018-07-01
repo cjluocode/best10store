@@ -46,7 +46,7 @@ class Review(object):
 
             reviews = raw_review_text1[0]
 
-            # print(reviews)
+
 
             new_review = Review()
 
@@ -54,6 +54,6 @@ class Review(object):
 
             review_list.append(new_review.content)
 
-        return review_list
+        return review_list[-2:]
 
 
