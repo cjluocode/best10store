@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from random import randint
+
 from featured_products.models import FeatureProduct
 from .models import SearchItem
 # Create your views here.

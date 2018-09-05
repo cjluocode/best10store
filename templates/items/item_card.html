@@ -1,37 +1,31 @@
 <!-- Search List Session-->
 <div class="container-fluid bg-light">
 
-    <div class="row">
-        <!--<div class="col-2"></div>-->
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-lx-12">
-<!--<p class="text-muted">Selected the best 10 results from <b>{{ total_items_number}}</b> related items on Amazon</p>-->
- <!--<p></p>-->
+
+        <div class="row">
         {% for item in item_list %}
-<div class="card">
-  <div class="card-header">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4">
 
-      {{ item.title }}
+            <div class="card" style="width: 20rem;">
 
-  </div>
-  <div class="card-body">
 
-       <p> <span class="float-left badge badge-pill badge-warning" >#{{ forloop.counter}}</span>
-           <!--<span class="float-right badge badge-pill badge-warning">Customer satisfaction {{ item.hotscore }}%</span>-->
-           <a href="{{ item.link}}&tag=best10store07-20" target="_blank" class="float-right btn btn-outline-info btn-sm">View on Amazon</a>
-       </p>
-        <br>
 
-        <p class="text-center"><img src="{{ item.image }}" height="100">&ensp;</p>
 
-         <p class="float-left lead"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="22" width="22">Rating:{{ item.rating }}·Count:{{item.rating_count}} {% if item.price %}·Price:${{ item.price}}{% endif %}</p>
 
-      <a href="/items/detail/{{item.id}}/" target="_blank" class="float-right btn btn-outline-info btn-sm float-right">Get Detail</a>
+        <div class="card-body">
+           <p><span class="float-left badge badge-pill badge-warning" >#{{ forloop.counter}}</span> <span class="card-text">{{ item.title | truncatechars:55 }}</span></p>
 
-  </div>
+
+
+       <!--</p>-->
+        <p class="text-center"><a href="/items/detail/{{item.id}}/" target="_blank"><img src="{{ item.image }}" height="100"></a></p>
+         <p class="card-text"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="22" width="22">Rating:{{ item.rating }}·Count:{{item.rating_count}} {% if item.price %}·Price:${{ item.price}}{% endif %}</p>
+
+        </div>
 </div>
-<br>
+</div>
 {% endfor %}
-    </div>
-        <!--<div class="col-2"></div>-->
+
+
     </div>
 </div>
