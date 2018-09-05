@@ -3,22 +3,21 @@
 <!-- SEO setting  -->
 {% block seo %}
 
+
 <title>Best Python Book for Beginners | Best 10 Book Store</title>
 <meta name="description" content="You can find the best book list for Python programmers. Even you are Python beginner. We gather the best python books for you.">
 <meta name="keywords" content="python books,beginners,best books, programming">
 
+
 {% endblock %}
-
 <!-- End of SEO setting  -->
-
-
 
 
 
 {%block content%}
 
 {% include 'items/jumbotron.html' %}
-
+<div class="row top-buffer"></div>
 {% include 'landing_page/product_navbar.html' %}
 
 {% include 'featured_products/product_card.html' with item_list=featured_products %}

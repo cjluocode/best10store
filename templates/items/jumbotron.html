@@ -1,26 +1,25 @@
 <!-- Junbotron Area-->
 <!--<div class="jumbotron jumbotron-fluid">-->
   <div class="container-fluid text-center search-container">
-      <!--<h1 class="title-text">Best10</h1>-->
-      <p></p>
-    <p class="h4 font-weight-light">Find top 10 books on Goodreads</p>
-      <p></p>
-      <div class="row">
-          <div class="col-6 offset-3">
-                <form method="POST" action="/result/"> {% csrf_token %}
+
+     <div class="row top-buffer"></div>
+      <h1>Find Best 10 Python Books for Beginners</h1>
+
+      <div class="row top-buffer"></div>
+
+          <div class="row">
+      <div class="col-6 offset-3">
+      <form method="POST" action="/result/"> {% csrf_token %}
       <div class="input-group">
      <input type="text" class="form-control" name="query_word" placeholder="Enter specific keywords...">
      <span class="input-group-btn">
-    <button class="btn btn-light" type="submit">LOOK UP</button>
+    <button class="btn btn-warning" type="submit">LOOK UP</button>
   </span>
       </div>
 </form>
 
 
-
-          </div>
-      </div>
-
-
+  </div>
+  </div>
   </div>
 <!--</div>-->
